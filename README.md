@@ -1,3 +1,28 @@
+# Netflix GPT
+ 
+ - Create React App Using Vite.js
+ - Configured TailwindCSS
+ - Header
+ - Routing of App
+ - Login Form
+ - Sign up Form
+ - Form Validation
+ - useRef Hook
+ - Firebase Setup
+ - Deploying our App to production
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

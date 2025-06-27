@@ -1,14 +1,31 @@
-import { useState } from "react";
-
+import { useRef, useState } from "react";
+import { checkValidData } from "../utils/validateForm";
 const Login = () => {
   const [showSignIn, setShowSignIn] = useState(true);
+  const [errorMassage, setErrorMassage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
 
   const toggleSignInForm = () => {
     setShowSignIn(!showSignIn);
   };
+
+  const handleFormClick = () => {
+    //Validation the form data
+    const masssage = checkValidData(
+      email.current.value,
+      password.current.value
+    );
+
+    setErrorMassage(masssage);
+  };
   return (
     <div>
-      <form className="absolute bg-black text-white p-12 my-36 mx-auto left-0 right-0 opacity-80 w-3/12 rounded-lg">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute bg-black text-white p-12 my-36 mx-auto left-0 right-0 opacity-80 w-3/12 rounded-lg"
+      >
         <h1 className="font-bold text-3xl py-4">
           {!showSignIn ? "Sign In" : "Sign Up"}
         </h1>
@@ -20,16 +37,22 @@ const Login = () => {
           />
         )}
         <input
+          ref={email}
           className="p-2 my-2 bg-gray-950 w-full border rounded-lg"
           type="text"
           placeholder="Email or mobile number"
         />
         <input
+          ref={password}
           className="p-2 my-2 bg-gray-950 border w-full rounded-lg"
-          type="text"
+          type="password"
           placeholder="Password"
         />
-        <button className="p-2 my-4 bg-red-700 w-full rounded-lg">
+        <p className="text-red-700 font-bold text-lg py-2">{errorMassage}</p>
+        <button
+          className="p-2 my-4 bg-red-700 w-full rounded-lg cursor-pointer"
+          onClick={handleFormClick}
+        >
           {!showSignIn ? "Sign In" : "Sign Up"}
         </button>
         <p className="cursor-pointer" onClick={toggleSignInForm}>
