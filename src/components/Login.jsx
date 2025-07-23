@@ -6,12 +6,13 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
-import { addUser } from "../utils/userSlice";
+
+import { addUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { login } from "../redux/isSignOutSlice";
+import { BG_IMAGE } from "../utils/constants";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -26,11 +27,12 @@ const Login = () => {
   };
 
   const handleFormClick = () => {
+    const nameValue = isSignInForm ? null : name.current?.value;
     //Validation the form data
     const masssage = checkValidData(
       email.current.value,
       password.current.value,
-      name.current.value
+      nameValue
     );
     setErrorMassage(masssage);
     if (masssage) return;
@@ -49,7 +51,6 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
           })
             .then(() => {
               // Profile updated!
@@ -57,7 +58,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -83,7 +83,7 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
+          dispatch(login());
           // ...
         })
         .catch((error) => {
@@ -135,10 +135,7 @@ const Login = () => {
             : "You already registered please?Sign In."}
         </p>
       </form>
-      <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/8200f588-2e93-4c95-8eab-ebba17821657/web/IN-en-20250616-TRIFECTA-perspective_9cbc87b2-d9bb-4fa8-9f8f-a4fe8fc72545_large.jpg"
-        alt="background-img"
-      />
+      <img src={BG_IMAGE} alt="background-img" />
     </div>
   );
 };
