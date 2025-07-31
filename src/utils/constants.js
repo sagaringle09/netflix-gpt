@@ -12,3 +12,4 @@ export const USER_ICON = "https://occ-0-3216-2186.1.nflxso.net/dnm/api/v6/vN7bi_
 
 export const BG_IMAGE = "https://assets.nflxext.com/ffe/siteui/vlv3/8200f588-2e93-4c95-8eab-ebba17821657/web/IN-en-20250616-TRIFECTA-perspective_9cbc87b2-d9bb-4fa8-9f8f-a4fe8fc72545_large.jpg"
 
+export const IMG_API_URL = "https://image.tmdb.org/t/p/w500";

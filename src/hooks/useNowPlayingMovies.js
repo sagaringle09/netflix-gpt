@@ -4,9 +4,8 @@ import { addNowPlayingMovies } from "../redux/moviesSlice";
 import { useEffect } from "react";
 
 const useNowPlayingMovies = () =>{
-const dispatch = useDispatch();
 
-  
+const dispatch = useDispatch();
   useEffect(() => {
 const getNowPlayingMovies = async () => {
     const data = await fetch(
@@ -15,6 +14,7 @@ const getNowPlayingMovies = async () => {
     );
     const json = await data.json();
     dispatch(addNowPlayingMovies(json.results));
+    
   };
 
     getNowPlayingMovies();

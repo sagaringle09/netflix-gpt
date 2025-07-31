@@ -3,14 +3,13 @@ import useTrailerVideo from "../hooks/useTrailerVideo";
 
 const VideoBackground = () => {
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
-  console.log(trailerVideo);
   //call TrailerVideo Api
   useTrailerVideo();
   if (!trailerVideo || !trailerVideo.key) return null;
   return (
-    <div className="">
+    <div className="w-screen">
       <iframe
-        className="aspect-video"
+        className="aspect-video "
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +

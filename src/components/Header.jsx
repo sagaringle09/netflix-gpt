@@ -50,17 +50,13 @@ const Header = () => {
 
   return (
     <div className="absolute flex justify-between w-screen px-8 py-2 bg-gradient-to-b from-black z-10">
-      <img className="w-50 " src={LOGO} alt="logo" />
+      <img className="w-30 h-12 mx-8 mt-2" src={LOGO} alt="logo" />
       {isAuthenticated && (
-        <div className="flex mt-3 p-2">
-          <img
-            className="w-12 h-12 rounded-lg"
-            src={USER_ICON}
-            alt="usericon"
-          />
+        <div className="flex mt-2 p-2">
+          <img className="w-9 h-9 rounded" src={USER_ICON} alt="usericon" />
           <button
             onClick={handleSignOut}
-            className="font-bold text-white p-3 cursor-pointer"
+            className="font-bold text-white p cursor-pointer p-2"
           >
             Sign Out
           </button>
